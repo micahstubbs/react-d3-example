@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import d3 from 'd3';
 
 import Histogram from '../Histogram';
+import Controls from './Controls';
+import { Title, Description } from './Meta';
 
 require('./style.less');
 
@@ -10,7 +12,8 @@ class H1BGraph extends Component {
 		super();
 
 		this.state = {
-			rawData: []
+			rawData: [],
+			dataFilter: () => true
 		};
 	}
 
@@ -44,6 +47,10 @@ class H1BGraph extends Component {
     }
 
     return title;
+	}
+
+	updateDataFilter(filter) {
+		this.setState({dataFilter: filter});
 	}
 
 	componentWillMount() {
@@ -101,11 +108,18 @@ class H1BGraph extends Component {
 
 		fullWidth = 700;
 
+		let filteredData = this.state.rawData
+			.filter(this.state.dataFilter);
+
 		return (
 			<div>
+				<Title data={filteredData} />
+				<Description data={filteredData} allData={this.state.rawData} />
 				<svg width={fullWidth} height={params.height}>
-					<Histogram {...params} data={this.state.rawData} />
+					<Histogram {...params} data={filteredData} />
 				</svg>
+				<Controls data={this.state.rawData} 
+					updateDataFilter={::this.updateDataFilter} />
 			</div>
 		);
 	}
