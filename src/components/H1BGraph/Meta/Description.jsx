@@ -93,7 +93,7 @@ class Description extends Meta {
 
 		return (	
 			<p className='lead'>
-				{yearFragment.length ? yearFragment : 'Since 2012'} the {USStateFragment} software
+				{yearFragment.length ? yearFragment : 'Since 2009'} the {USStateFragment} software
 				industry {yearFragment.length ? 'gave' : 'has given'} jobs to {N} foreign 
 				nationals{previousYearFragment}. Most of them made between ${min_salary} and
 				${max_salary} per year.  
