@@ -73,7 +73,12 @@ class Controls extends Component {
 					d => d.state
 				)
 			)
-		);
+		).map(d => {
+			if (d === "") return `""`;
+			else return d;
+		});
+
+		console.log('getUSStates(this.props.data)', getUSStates(this.props.data));
 
 		return (
 			<div>

@@ -42,6 +42,7 @@ class ControlRow extends Component {
 				onClick={::this.makePick} />
 		);
 	}
+	
 	render() {
 		return (
 			<div className='row'>
